@@ -54,7 +54,7 @@ A modern, professional web application for converting Uzbek text between Cyrilli
 1. **Clone or navigate to the project directory:**
 
 ```bash
-cd your-project-directory
+cd uzbek-krill-lotin-converter
 ```
 
 2. **Install dependencies:**
