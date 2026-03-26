@@ -98,7 +98,9 @@ export function ConverterPage() {
                 output: converted,
                 direction: (isCyrillic(input)
                   ? "cyrillic-to-latin"
-                  : "latin-to-cyrillic") as "cyrillic-to-latin" | "latin-to-cyrillic",
+                  : "latin-to-cyrillic") as
+                  | "cyrillic-to-latin"
+                  | "latin-to-cyrillic",
                 timestamp: Date.now(),
               },
               ...prev,
@@ -138,7 +140,9 @@ export function ConverterPage() {
               output: converted,
               direction: (isCyrillic(text)
                 ? "cyrillic-to-latin"
-                : "latin-to-cyrillic") as "cyrillic-to-latin" | "latin-to-cyrillic",
+                : "latin-to-cyrillic") as
+                | "cyrillic-to-latin"
+                | "latin-to-cyrillic",
               timestamp: Date.now(),
             },
             ...prev,
@@ -169,7 +173,9 @@ export function ConverterPage() {
         {
           input,
           output: result,
-          direction: "cyrillic-to-latin" as "cyrillic-to-latin" | "latin-to-cyrillic",
+          direction: "cyrillic-to-latin" as
+            | "cyrillic-to-latin"
+            | "latin-to-cyrillic",
           timestamp: Date.now(),
         },
         ...prev,
@@ -191,7 +197,9 @@ export function ConverterPage() {
         {
           input,
           output: result,
-          direction: "latin-to-cyrillic" as "cyrillic-to-latin" | "latin-to-cyrillic",
+          direction: "latin-to-cyrillic" as
+            | "cyrillic-to-latin"
+            | "latin-to-cyrillic",
           timestamp: Date.now(),
         },
         ...prev,
@@ -215,7 +223,7 @@ export function ConverterPage() {
 
     const success = await copyToClipboard(output);
     if (success) {
-      addToast("Bufferga ko'chirildi! ✓", "success", 2000);
+      addToast("Nusxa olindi ✓", "success", 2000);
     } else {
       addToast("Ko'chirishda xato", "error");
     }
@@ -257,10 +265,12 @@ export function ConverterPage() {
       {/* Header */}
       <div className="mb-8">
         <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-2">
-          🔄 O'zbek Matn O'zgartirgich
+          🔄 Kiril Lotin Konvertor
         </h1>
         <p className="text-lg text-gray-600 dark:text-gray-400">
-          Kiril va Lotin o'zbek matni o'rtasida aniq o'nqaytirish
+          O‘zbek matni va fayllarni Kiril va Lotin yozuvlari o‘rtasida tez va
+          oson konvertatsiya qiling. Matn kiriting yoki fayl yuklang — natijani
+          darhol ko‘ring.
         </p>
       </div>
 
@@ -274,12 +284,12 @@ export function ConverterPage() {
         <ToggleSwitch
           checked={realTimeEnabled}
           onChange={setRealTimeEnabled}
-          label="Real-vaqtda o'zgartirgich (avtomatik yo'nalishi aniqla)"
+          label="Real vaqtda konvertatsiya (yo‘nalishni avtomatik aniqlash)"
         />
         <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
           {realTimeEnabled
-            ? "Siz yozgancha avtomatik konvertatsiya bo'layapti..."
-            : "Tez o'zgartirgich uchun yoqing"}
+            ? "Siz yozganingiz sari matn avtomatik konvertatsiya qilinadi..."
+            : "Tezkor konvertatsiya uchun yoqing"}
         </p>
       </div>
 
@@ -302,7 +312,7 @@ export function ConverterPage() {
             label="Chiqish matni"
             value={output}
             readOnly
-            placeholder="O'zgartirilgan matn shu yerda ko'rinadi..."
+            placeholder="Konvertatsiya qilingan matn shu yerda ko‘rinadi..."
             characterCount={outputCharCount}
           />
         </div>
@@ -361,7 +371,8 @@ export function ConverterPage() {
         <div className="p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg mb-6 flex items-center gap-3">
           <FileText className="text-blue-600 dark:text-blue-400" size={20} />
           <p className="text-sm text-gray-700 dark:text-gray-300">
-            <span className="font-medium">{fileName}</span> bilan ishlayapti
+            <span className="font-medium">{fileName}</span> fayli bilan
+            ishlanmoqda
           </p>
         </div>
       )}
@@ -382,7 +393,7 @@ export function ConverterPage() {
             {inputCharCount}
           </p>
           <p className="text-xs text-gray-600 dark:text-gray-400">
-            belgi (bo'sh joylar hisob qilinmadi)
+            belgi (bo‘sh joylar hisobga olinmagan)
           </p>
         </div>
 
@@ -442,23 +453,33 @@ export function ConverterPage() {
       <div className="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
         <div className="text-xs text-gray-600 dark:text-gray-400 space-y-2">
           <p className="font-medium text-gray-700 dark:text-gray-300 mb-3">
-            ⌨️ Yorliqlar:
+            ⌨️ Klaviatura yorliqlari:
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <div className="flex items-center gap-2 p-2 bg-gray-50 dark:bg-gray-800 rounded">
-              <Keyboard size={16} className="text-primary-600 dark:text-primary-400 flex-shrink-0" />
+              <Keyboard
+                size={16}
+                className="text-primary-600 dark:text-primary-400 flex-shrink-0"
+              />
               <span>
-                <span className="font-medium">Ctrl+Enter</span> - Avtomatik konvertatsiya
+                <span className="font-medium">Ctrl+Enter</span> - Avtomatik
+                konvertatsiya
               </span>
             </div>
             <div className="flex items-center gap-2 p-2 bg-gray-50 dark:bg-gray-800 rounded">
-              <Copy size={16} className="text-primary-600 dark:text-primary-400 flex-shrink-0" />
+              <Copy
+                size={16}
+                className="text-primary-600 dark:text-primary-400 flex-shrink-0"
+              />
               <span>
                 <span className="font-medium">Ctrl+Shift+C</span> - Nusxalash
               </span>
             </div>
             <div className="flex items-center gap-2 p-2 bg-gray-50 dark:bg-gray-800 rounded">
-              <Trash2 size={16} className="text-primary-600 dark:text-primary-400 flex-shrink-0" />
+              <Trash2
+                size={16}
+                className="text-primary-600 dark:text-primary-400 flex-shrink-0"
+              />
               <span>
                 <span className="font-medium">Ctrl+K</span> - O'chirish
               </span>

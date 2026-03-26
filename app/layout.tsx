@@ -5,16 +5,28 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import "@/globals.css";
 
 export const metadata: Metadata = {
-  title: "O'zbek Matn O'zgartirgich | Kiril ↔ Lotin",
+  title: "Kiril lotin konvertor",
   description:
-    "O'zbek matni Kiril va Lotin scripts o'rtasida onqaytirish. Fayllarni yuklang, haqiqiy vaqtda o'zgartirgich va natijalarni yuklab oling.",
-  keywords: ["uzbek", "converter", "cyrillic", "latin", "matn", "o'zgartirish"],
-  authors: [{ name: "O'zbek Matn O'zgartirgich" }],
+    "O‘zbek matni va fayllarni Kiril ↔ Lotin yozuvlari o‘rtasida tez va oson konvertatsiya qiling. Matn kiriting yoki fayl yuklang va natijani darhol oling.",
+  keywords: [
+    "kiril lotin konvertor",
+    "o‘zbek konvertor",
+    "kiril",
+    "lotin",
+    "matn",
+    "fayl",
+    "docx",
+    "txt",
+    "transliteratsiya",
+  ],
+  authors: [{ name: "Kiril Lotin Konvertor" }],
   viewport: "width=device-width, initial-scale=1",
   openGraph: {
-    title: "O'zbek Matn O'zgartirgich",
-    description: "O'zbek matni Kiril va Lotin scripts o'rtasida o'zgartirgich",
+    title: "Kiril Lotin Konvertor",
+    description:
+      "O‘zbek matni va fayllarni Kiril va Lotin yozuvlari o‘rtasida oson va tez konvertatsiya qiling.",
     type: "website",
+    locale: "uz_UZ",
   },
 };
 

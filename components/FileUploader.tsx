@@ -38,7 +38,7 @@ export function FileUploader({
       }
 
       if (!isValidFileSize(file)) {
-        setError("Fayl o'lchami 5MB dan kam bo'lishi kerak");
+        setError("Fayl hajmi 5MB dan kam bo'lishi kerak");
         return;
       }
 
@@ -64,7 +64,7 @@ export function FileUploader({
 
       onFileSelected(text, file.name);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Faylni o'qishda xato");
+      setError(err instanceof Error ? err.message : "Faylni o'qishda xatolik yuz berdi");
     } finally {
       setIsProcessing(false);
       if (fileInputRef.current) {

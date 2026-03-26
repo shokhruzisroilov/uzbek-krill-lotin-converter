@@ -1,4 +1,3 @@
-// Uzbek Cyrillic to Latin mapping
 const cyrillicToLatinMap: Record<string, string> = {
   // Uppercase
   А: "A",
@@ -78,7 +77,6 @@ const cyrillicToLatinMap: Record<string, string> = {
   я: "ya",
 };
 
-// Latin to Uzbek Cyrillic mapping
 const latinToCyrillicMap: Record<string, string> = {
   // Uppercase
   A: "А",
@@ -208,23 +206,22 @@ export function latinToCyrillic(text: string): string {
   while (i < text.length) {
     let found = false;
 
-    // Try multi-character combinations (4 chars) first
-    for (let len = 4; len >= 2; len--) {
+    // Try multi-character combinations (4 chars) first, then single chars
+    for (let len = 4; len >= 1; len--) {
       const substring = lowerText.substring(i, i + len);
-      const capitalizedSubstring =
-        substring.charAt(0).toUpperCase() + substring.slice(1);
 
-      // Check both lowercase and capitalized versions
-      if (latinToCyrillicMap[substring]) {
-        result += latinToCyrillicMap[substring];
-        i += len;
-        found = true;
-        break;
-      } else if (
-        len === substring.length &&
-        latinToCyrillicMap[capitalizedSubstring]
-      ) {
-        result += latinToCyrillicMap[capitalizedSubstring];
+      // For multi-char sequences (len > 1), preserve the first character's case
+      let mappedValue = latinToCyrillicMap[substring];
+      if (!mappedValue && len > 1) {
+        // Try with first character capitalized
+        const capitalizedSubstring =
+          substring.charAt(0).toUpperCase() + substring.slice(1);
+        mappedValue = latinToCyrillicMap[capitalizedSubstring];
+      }
+
+      // For single characters, use the lowercase mapping (which handles both cases)
+      if (mappedValue) {
+        result += mappedValue;
         i += len;
         found = true;
         break;
